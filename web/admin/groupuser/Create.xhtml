@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="GroupuserCreateDlg" widgetVar="GroupuserCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateGroupuserTitle}">
+            <h:form id="GroupuserCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{groupuserController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateGroupuserLabel_groupuserPK_groupName}" for="groupuserPK_groupName" />
+                        <p:inputText id="groupuserPK_groupName" value="#{groupuserController.selected.groupuserPK.groupName}" title="#{bundle.CreateGroupuserTitle_groupuserPK_groupName}" required="true" requiredMessage="#{bundle.CreateGroupuserRequiredMessage_groupuserPK_groupName}"/>
+                        <p:outputLabel value="#{bundle.CreateGroupuserLabel_groupuserPK_userId}" for="groupuserPK_userId" />
+                        <p:inputText id="groupuserPK_userId" value="#{groupuserController.selected.groupuserPK.userId}" title="#{bundle.CreateGroupuserTitle_groupuserPK_userId}" required="true" requiredMessage="#{bundle.CreateGroupuserRequiredMessage_groupuserPK_userId}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{groupuserController.create}" value="#{bundle.Save}" update="display,:GroupuserListForm:datalist,:growl" oncomplete="handleSubmit(args,'GroupuserCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="GroupuserCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
