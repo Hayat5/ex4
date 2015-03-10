@@ -35,8 +35,7 @@ public class DepenseFacade extends AbstractFacade<Depense> {
            return outdepense;  
       }  
        public List<Depense> byiduser(int x) {
-           System.out.print("Je suis x");
-           System.out.println(x);
+         
              return em.createQuery(
     "SELECT d FROM Depense d WHERE d.idUser IN (SELECT u FROM User u WHERE u.userId = :userId) ")
     .setParameter("userId", x).getResultList();
@@ -46,7 +45,8 @@ public class DepenseFacade extends AbstractFacade<Depense> {
        
          public List<Object[]> byu(){
              
-              return (List<Object[]>) em.createQuery("SELECT SUM(d.depense), d.idUser  FROM Depense d GROUP BY d.idUser").getResultList();
+              //return (List<Object[]>) em.createQuery("SELECT SUM(d.depense), d.idUser  FROM Depense d GROUP BY d.idUser").getResultList();
+return (List<Object[]>) em.createQuery("SELECT SUM(d.depense),  u.userName , d.idUser  FROM Depense d , User u WHERE d.idUser = u GROUP BY d.idUser").getResultList();
 
           //   String qlString = "SELECT SUM(d.depense),d.idUser  FROM Depense d GROUP BY d.idUser";
           //   System.out.println(qlString);
@@ -55,9 +55,17 @@ public class DepenseFacade extends AbstractFacade<Depense> {
              }
          
            public List<Object[]> bycat(){
-               System.out.println("hi");
-              return (List<Object[]>) em.createQuery("SELECT SUM(d.depense),d.idCategory  FROM Depense d GROUP BY d.idCategory").getResultList();
+              // System.out.println("hi");
+              //return (List<Object[]>) em.createQuery("SELECT SUM(d.depense),d.idCategory  FROM Depense d GROUP BY d.idCategory").getResultList();
+return (List<Object[]>) em.createQuery("SELECT SUM(d.depense), c.categoriesName , c.categoriesId  FROM Depense d , Categories c WHERE d.idCategory = c GROUP BY c.categoriesId").getResultList();
 
              }
+           
+             public Object byname(String name) {
+return em.createQuery(
+    "SELECT u FROM User u WHERE u.userName = :userName")
+    .setParameter("userName", name).getSingleResult();
+
+}
 
 }

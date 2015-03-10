@@ -47,20 +47,26 @@ public class Depense implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_depense")
     private Integer idDepense;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "id_category")
-    private int idCategory;
+    
+  
+     @JoinColumn(name = "id_category", referencedColumnName = "categories_id")
+    @ManyToOne(optional = false)
+    
+    private Categories idCategory;
     @Basic(optional = false)
     @NotNull
     @Column(name = "date_depense")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateDepense;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "depense")
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "depense")
     private Collection<Depense> depenseCollection;
     @JoinColumn(name = "depense", referencedColumnName = "id_depense")
-    @ManyToOne(optional = false)
-    private Depense depense;
+    
+    @ManyToOne(optional = false)*/
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "depense")
+    private int depense;
     @JoinColumn(name = "id_user", referencedColumnName = "user_id")
     @ManyToOne(optional = false)
     private User idUser;
@@ -72,7 +78,7 @@ public class Depense implements Serializable {
         this.idDepense = idDepense;
     }
 
-    public Depense(Integer idDepense, int idCategory, Date dateDepense) {
+    public Depense(Integer idDepense, Categories idCategory, Date dateDepense) {
         this.idDepense = idDepense;
         this.idCategory = idCategory;
         this.dateDepense = dateDepense;
@@ -86,11 +92,11 @@ public class Depense implements Serializable {
         this.idDepense = idDepense;
     }
 
-    public int getIdCategory() {
+    public Categories getIdCategory() {
         return idCategory;
     }
 
-    public void setIdCategory(int idCategory) {
+    public void setIdCategory(Categories idCategory) {
         this.idCategory = idCategory;
     }
 
@@ -103,19 +109,19 @@ public class Depense implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Depense> getDepenseCollection() {
+   /* public Collection<Depense> getDepenseCollection() {
         return depenseCollection;
     }
 
     public void setDepenseCollection(Collection<Depense> depenseCollection) {
         this.depenseCollection = depenseCollection;
     }
-
-    public Depense getDepense() {
+*/
+    public int getDepense() {
         return depense;
     }
 
-    public void setDepense(Depense depense) {
+    public void setDepense(int depense) {
         this.depense = depense;
     }
 

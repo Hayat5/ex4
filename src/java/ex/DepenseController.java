@@ -19,6 +19,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ExternalContext;
 import javax.servlet.http.*;
+
 @ManagedBean(name = "depenseController")
 @SessionScoped
 public class DepenseController implements Serializable {
@@ -27,10 +28,11 @@ public class DepenseController implements Serializable {
     private ex.DepenseFacade ejbFacade;
     private List<Depense> items = null;
     private Depense selected;
-    private List<Depense> depense = null;
+    private List<Depense> depenselist = null;
     private List<Object[]> listbyuser;
     private List<Object[]> listbyc;
     private int depenses;
+    int id;
 
      
     public DepenseController() {
@@ -114,7 +116,7 @@ public class DepenseController implements Serializable {
         return items;
     }
 
-     public List<Depense> getDepense() {
+     public List<Depense> getDepenselist() {
          
            FacesContext context = FacesContext.getCurrentInstance();
              ExternalContext ectx = context.getExternalContext();
@@ -122,17 +124,32 @@ public class DepenseController implements Serializable {
               
               HttpSession session = request.getSession(true);
                   //set a string session attribute
-                  int id = (int) session.getAttribute("MySessionVariable");
-                  System.out.println(id);
-          
-            depense = getFacade().byiduser(id);
+              if(session.getAttribute("MySessionVariable")== null){
+              System.out.println("nonsession");
+               String a = request.getRemoteUser();
+             System.out.println(a);
+            User z = (User) getFacade().byname(a);
+           
+           //System.out.println("hi");
+           //System.out.println(z);
+           id = z.getUserId();
+         
+  
+              
+              }
+             else{
+                   id = (int) session.getAttribute("MySessionVariable");
+                 
+          }
+             
+            depenselist = getFacade().byiduser(id);
                  // depense = getFacade().findAll();
-          return depense;  
+          return depenselist;  
        
     }
     
-  public void setDepense(List<Depense> depense) {
-      depense = this.depense;
+  public void setDepenselist(List<Depense> depenselist) {
+      depenselist = this.depenselist;
      
   }
     private void persist(PersistAction persistAction, String successMessage) {
@@ -170,6 +187,8 @@ public class DepenseController implements Serializable {
     public List<Depense> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
+    
+  
 
     @FacesConverter(forClass = Depense.class)
     public static class DepenseControllerConverter implements Converter {
