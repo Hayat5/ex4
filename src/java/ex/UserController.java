@@ -36,6 +36,7 @@ public class UserController implements Serializable {
     private int hayate;
     private User selected;
     private User usersession = null;
+    private List<User> listusers = null;
    
    
   
@@ -92,6 +93,40 @@ public class UserController implements Serializable {
             items = getFacade().findAll();
         }
         return items;
+    }
+ public List<User> getListusers() {
+        if (listusers == null) {
+            FacesContext context = FacesContext.getCurrentInstance();
+             ExternalContext ectx = context.getExternalContext();
+              HttpServletRequest request = (HttpServletRequest)ectx.getRequest();
+              String a = request.getRemoteUser();
+              HttpSession session = request.getSession(true);
+
+                  //set a string session attribute
+                   // session.setAttribute("MySessionVariable", 1);
+
+
+          System.out.println(a);
+         
+           
+            User z = (User)getFacade().byname(a);
+           //System.out.println("hi");
+           //System.out.println(z);
+          int x = z.getUserId();
+          //System.out.println(x);
+          session.setAttribute("MySessionVariable", x);
+          //System.out.println(session.getAttribute("MySessionVariable"));
+         
+           
+           listusers = getFacade().findusers(x);
+          // System.out.println(hayat);
+           
+          //   hayat = getFacade().findAll();
+        
+      
+         
+        }
+        return listusers;
     }
  
    

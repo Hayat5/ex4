@@ -36,17 +36,14 @@ public class UserFacade extends AbstractFacade<User> {
        
         Query x = em.createNativeQuery("SELECT u FROM User u ", User.class);
      return  x.getResultList();
-        /*return em.createQuery(
-    "SELECT u FROM User u WHERE u.userName = 'Hayat'")
-    .setMaxResults(10)
-    .getResultList();*/
-        /* javax.persistence.criteria.CriteriaQuery by = getEntityManager().getCriteriaBuilder().createQuery();
-       User k =new User();
      
-       by.select(by.from(entityClass));
-        
-        return getEntityManager().createQuery(by).getResultList();*/
-                
+ }
+      public List<User> findusers(int x) {
+       
+          return em.createQuery(
+    "SELECT u FROM User u WHERE u.userId = :userId ")
+    .setParameter("userId", x).getResultList();
+     
  }
        public Object byname(String name) {
 return em.createQuery(

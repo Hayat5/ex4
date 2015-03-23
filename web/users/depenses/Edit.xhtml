@@ -28,7 +28,7 @@
                        
                         <p:outputLabel value="#{bundle.EditDepenseLabel_idUser}" for="idUser" />
                         <p:selectOneMenu id="idUser" value="#{depenseController.selected.idUser}" required="true" requiredMessage="#{bundle.EditDepenseRequiredMessage_idUser}">
-                            <f:selectItems value="#{userController.itemsAvailableUser}"
+                            <f:selectItems value="#{userController.listusers}"
                                            var="idUserItem"
                                            itemValue="#{idUserItem}"/>
                         </p:selectOneMenu>

@@ -54,9 +54,12 @@ public class CategoriesController implements Serializable {
     }
 
     public void create() {
+          System.out.println("heo");
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("CategoriesCreated"));
+          System.out.println("hello");
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
+            System.out.println("Failed");
         }
     }
 

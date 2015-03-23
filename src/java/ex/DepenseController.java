@@ -127,7 +127,7 @@ public class DepenseController implements Serializable {
               if(session.getAttribute("MySessionVariable")== null){
               System.out.println("nonsession");
                String a = request.getRemoteUser();
-             System.out.println(a);
+            
             User z = (User) getFacade().byname(a);
            
            //System.out.println("hi");
@@ -139,6 +139,7 @@ public class DepenseController implements Serializable {
               }
              else{
                    id = (int) session.getAttribute("MySessionVariable");
+                  
                  
           }
              
