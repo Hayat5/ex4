@@ -1,12 +1,12 @@
 Projet de gestion de depense familiales.
 Email: hayat.bourgi@gmail.com
 
-Librairies
 
-1) itext :
+
+1) Vous pouvez telecharger la librairie itext :
 http://mvnrepository.com/artifact/com.lowagie/itext/2.1.7
 
-2) itextpdf:
+2) Vous pouvez telecharger la librairie itextpdf:
 http://www.java2s.com/Code/Jar/i/Downloaditextpdf534jar.htm
 
 3) la base de donne se trouve :
