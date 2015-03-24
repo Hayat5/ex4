@@ -113,8 +113,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`user_id`, `user_name`, `user_password`) VALUES
-(1, 'admin', 'bdb8761b4d26ddfa8b74f144c07bd15'),
-(3, 'haya', 'bdb8761b4d26ddfa8b74f144c07bd15'),
+(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e'),
+(3, 'haya', 'e10adc3949ba59abbe56e057f20f883e'),
 (4, 'others', 'bdb8761b4d26ddfa8b74f144c07bd15'),
 (5, 'r', '202cb962ac59075b964b07152d234b70'),
 (6, 'hayat', 'e10adc3949ba59abbe56e057f20f883e'),
