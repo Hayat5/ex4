@@ -17,3 +17,7 @@ https://github.com/Hayat5/ex4/tree/master/configuration/JDBC/connection-pool
 
 5)les configuration de jdbc ressource se trouve:
 https://github.com/Hayat5/ex4/tree/master/configuration/JDBC/resource
+
+6) Pour l'admin le mot de login est admin et mot de pass est : 123456 
+
+
